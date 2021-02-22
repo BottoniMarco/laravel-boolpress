@@ -39,17 +39,33 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        dd($data);
-        $request->validate($this->postValidation);
+        // dd($data);
+
+        // $request->validate($this->postValidation);
+        // $request->validate([
+        //     'name' => 
+        // ]);
+
+
+    
+       
 
         $post = new Post();
-        $post = fill($data);
+
+        $title = "Title-1";
+        $post->title = $title;
+        $post->subtitle = "Subtitle-1";
+        $post->author = "Author-1";
+        $post->publication_date = "2021-02-22 16:54:28";
+
+
+        $post->fill($data);
         $postSaveResult = $post->save();
 
-
-        if($postSaveResult && !empty($data['tags'])) {
+        if($postSaveResult) {
             $post->tags()->attach($data['tags']);
         }
+
         return redirect()->route('posts.index')->with('message',"post creato correttamente");
     }
 
