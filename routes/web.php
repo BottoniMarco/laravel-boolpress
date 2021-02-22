@@ -17,4 +17,5 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::resource('posts', 'PostController@index');
+Route::get('posts', 'PostController@index');
+Route::get('create', 'PostController@create');

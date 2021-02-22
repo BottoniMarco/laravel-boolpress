@@ -19,7 +19,7 @@ class CreateInfoPostsTable extends Migration
             $table->string('post_status',7);
             $table->string('comment_status',7);
 
-            $table->foreign('post_id')->references('id')->on('posts');
+            $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
 
 
 
