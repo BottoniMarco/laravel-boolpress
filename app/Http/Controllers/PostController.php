@@ -39,16 +39,7 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        // dd($data);
 
-        // $request->validate($this->postValidation);
-        // $request->validate([
-        //     'name' => 
-        // ]);
-
-
-    
-       
 
         $post = new Post();
 
@@ -86,9 +77,12 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        //
+        $tags = Tag::all();
+
+        return view('posts.edit', compact('post', 'tags'));
+
     }
 
     /**
@@ -98,9 +92,33 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post)
     {
-        //
+        $data = $request->all();
+        $data["slug"] = Str::slug($data["title"]);
+        
+        
+        // $post = new Post();
+        
+        $title = "Title-1";
+        $post->title = $title;
+        $post->subtitle = "Subtitle-1";
+        $post->author = "Author-1";
+        $post->publication_date = "2021-02-22 16:54:28";
+        
+        $post->update($data);
+
+        // $post->fill($data);
+        // $postSaveResult = $post->save();
+
+        if(empty($data['tags'])) {
+            $post->tags()->detach();
+        }else{
+            $post->sync($data['tags']);
+        }
+
+        return redirect()->route('posts.index')->with('message',"post AGGIORNATO correttamente");
+
     }
 
     /**
