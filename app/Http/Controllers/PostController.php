@@ -47,6 +47,7 @@ class PostController extends Controller
         if($postSaveResult && !empty($data['tags'])) {
             $post->tags()->attach($data['tags']);
         }
+        return redirect()->route('posts')->with('message',"post creato correttamente");
     }
 
     /**
