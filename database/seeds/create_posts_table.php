@@ -25,3 +25,8 @@ class create_posts_table extends Seeder
         }
     }
 }
+
+
+
+
+
