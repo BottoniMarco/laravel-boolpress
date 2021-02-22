@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Post;
 use App\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -15,7 +16,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('posts');
+        return view('posts.index');
     }
 
     /**
@@ -26,7 +27,7 @@ class PostController extends Controller
     public function create()
     {
         $tags = Tag::all();
-        return view('create', compact('tags'));
+        return view('posts.create', compact('tags'));
     }
 
     /**
@@ -38,6 +39,8 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
+        dd($data);
+        $request->validate($this->postValidation);
 
         $post = new Post();
         $post = fill($data);
@@ -47,7 +50,7 @@ class PostController extends Controller
         if($postSaveResult && !empty($data['tags'])) {
             $post->tags()->attach($data['tags']);
         }
-        return redirect()->route('posts')->with('message',"post creato correttamente");
+        return redirect()->route('posts.index')->with('message',"post creato correttamente");
     }
 
     /**
