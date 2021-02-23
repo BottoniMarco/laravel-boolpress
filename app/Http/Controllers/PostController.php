@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use App\Tag;
+use App\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -28,7 +29,8 @@ class PostController extends Controller
     public function create()
     {
         $tags = Tag::all();
-        return view('posts.create', compact('tags'));
+        $images = Image::all();
+        return view('posts.create', compact('tags', 'images'));
     }
 
     /**
@@ -81,6 +83,8 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         $tags = Tag::all();
+        
+
 
         return view('posts.edit', compact('post', 'tags'));
 
@@ -115,7 +119,7 @@ class PostController extends Controller
         if(empty($data['tags'])) {
             $post->tags()->detach();
         }else{
-            $post->sync($data['tags']);
+            $post->tags()->sync($data['tags']);
         }
 
         return redirect()->route('posts.index')->with('message',"post AGGIORNATO correttamente");
@@ -130,6 +134,10 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::findOrFail($id);
+        $post->delete();
+
+        return redirect()->route('posts.index');
+
     }
 }

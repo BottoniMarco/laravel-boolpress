@@ -22,6 +22,6 @@
             </tbody>
         </table>
         <a class="btn btn-primary" href="{{ route('posts.index') }}">home</a>
-        >
+        
     </div>
 @endsection

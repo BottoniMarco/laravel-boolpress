@@ -11,7 +11,7 @@
         </ul>
     </div>
     @endif
-
+    <h2>Tags</h2>
     <form action="{{ route('posts.store')}}" method="post">
         @csrf
         @method('POST')
@@ -24,13 +24,11 @@
                 </div>
             </div>
         @endforeach
-        <div>
-            <button class="btn btn-success">SALVA</button>
-        </div>
 
 
 
 
+        <h2>Article</h2>
 
         <div class="form-group">
             <div class="form-group">
@@ -51,6 +49,20 @@
             </div>
  --}}
 
+
+        <h2>Images</h2>
+        @foreach ($images as $image)
+        <div class="form-group">
+            <div class="custom-control custom-checkbox">
+                <input class="custom-control-input" type="checkbox"
+                id="image-{{ $image->id  }}" value="{{ $image->id  }}" name="images[]">
+                <label class="custom-control-label" for="image-{{ $image->id  }}">{{ $image->alt  }}</label>
+                <img src="{{ $image->link  }}" alt="{{ $image->alt  }}" style="width: 40px">
+            </div>
+        </div>
+        @endforeach
+
+            
             <button type="submit" class="btn btn-primary">Submit</button>
             <a class="btn btn-primary" href="{{ route('posts.index') }}">home</a>
 

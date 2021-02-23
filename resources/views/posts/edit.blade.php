@@ -19,31 +19,28 @@
             <div class="form-group">
                 <div class="custom-control custom-checkbox">
                     <input class="custom-control-input" type="checkbox"
-                    id="tag-{{ $tag->id  }}" value="{{ $tag->id  }}" name="tags[]">
+                    id="tag-{{ $tag->id  }}" value="{{ $tag->id  }}" name="tags[]" {{ ($post->tags->contains($tag->id)) ? 'checked' : '' }}>
                     <label class="custom-control-label" for="tag-{{ $tag->id  }}">{{ $tag->name  }}</label>
                 </div>
             </div>
         @endforeach
-        <div>
-            <button class="btn btn-success">SALVA</button>
-        </div>
 
 
 
 
-
+<!-- c$post->title -->
         <div class="form-group">
             <div class="form-group">
                 <label for="title"></label>
-                <input type="text" class="form-control" id="title" name="title" placeholder="title" value="{{ old('title') }}">
+                <input type="text" class="form-control" id="title" name="title" placeholder="title" value="{{ $post->title }}">
             </div>
             <div class="form-group">
                 <label for="subtitle"></label>
-                <input type="text" class="form-control" id="subtitle" name="subtitle" placeholder="subtitle" value="{{ old('subtitle') }}">
+                <input type="text" class="form-control" id="subtitle" name="subtitle" placeholder="subtitle" value="{{ $post->subtitle }}">
             </div>
             <div class="form-group">
                 <label for="author"></label>
-                <input type="text" class="form-control" id="author"  name="author" placeholder="author" value="{{ old('author') }}">
+                <input type="text" class="form-control" id="author"  name="author" placeholder="author" value="{{ $post->author }}">
             </div>
             {{-- <div class="form-group">
                 <label for="publication_date"></label>
