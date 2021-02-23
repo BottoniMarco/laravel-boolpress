@@ -44,10 +44,10 @@ class PostController extends Controller
 
         $post = new Post();
 
-        $title = "Title-1";
-        $post->title = $title;
-        $post->subtitle = "Subtitle-1";
-        $post->author = "Author-1";
+        // $title = "Title-2";
+        // $post->title = $title;
+        // $post->subtitle = "Subtitle-2";
+        // $post->author = "Author-2";
         $post->publication_date = "2021-02-22 16:54:28";
 
 
@@ -96,16 +96,16 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         $data = $request->all();
-        $data["slug"] = Str::slug($data["title"]);
+        // $data["slug"] = Str::slug($data["title"]);
         
         
         // $post = new Post();
         
-        $title = "Title-1";
-        $post->title = $title;
-        $post->subtitle = "Subtitle-1";
-        $post->author = "Author-1";
-        $post->publication_date = "2021-02-22 16:54:28";
+        // $title = "Title-1";
+        // $post->title = $title;
+        // $post->subtitle = "Subtitle-1";
+        // $post->author = "Author-1";
+        // $post->publication_date = "2021-02-22 16:54:28";
         
         $post->update($data);
 

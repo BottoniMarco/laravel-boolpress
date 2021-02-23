@@ -20,7 +20,9 @@
                     <td>{{ $post->subtitle}}</td>
                     <td>{{ $post->author}}</td>
                     <td>{{ $post->publication_date}}</td>
-                    <td><a class="btn btn-primary" href="{{ route('posts.show', $post->id) }}">gettaglio</a></td>
+                    <td><a class="btn btn-primary" href="{{ route('posts.show', $post->id) }}">dettaglio</a></td>
+                    <td><a class="btn btn-primary" href="{{ route('posts.edit', $post->id) }}">edit</a></td>
+                    <td><a class="btn btn-primary" href="{{ route('posts.create') }}">crea</a</td>
                 </tr>
                 @endforeach
             </tbody>
