@@ -60,6 +60,10 @@ class PostController extends Controller
             $post->tags()->attach($data['tags']);
         }
 
+        if($postSaveResult && !empty($data['images'])) {
+            $post->images()->attach($data['images']);
+        }
+
         return redirect()->route('posts.index')->with('message',"post creato correttamente");
     }
 
@@ -83,10 +87,11 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         $tags = Tag::all();
-        
+        $images = Image::all();
+               
 
 
-        return view('posts.edit', compact('post', 'tags'));
+        return view('posts.edit', compact('post', 'tags', 'images'));
 
     }
 
@@ -115,6 +120,12 @@ class PostController extends Controller
 
         // $post->fill($data);
         // $postSaveResult = $post->save();
+
+        if(empty($data['images'])) {
+            $post->images()->detach();
+        }else{
+            $post->images()->sync($data['images']);
+        }
 
         if(empty($data['tags'])) {
             $post->tags()->detach();

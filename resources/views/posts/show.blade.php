@@ -18,6 +18,14 @@
                     <td>{{ $post->subtitle}}</td>
                     <td>{{ $post->author}}</td>
                     <td>{{ $post->publication_date}}</td>
+                    <td>
+                        @foreach ($post->images as $image)
+                            <figure>
+                                <img src="{{$image->link}}" alt="">
+                            </figure>
+                            
+                        @endforeach
+                    </td>
                 </tr>
             </tbody>
         </table>

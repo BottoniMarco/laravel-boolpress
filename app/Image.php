@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Image extends Model
 {
     public function posts() {
-        return $this->belongsToMany('App\post');
+        return $this->belongsToMany('App\post', 'post_image');
     }
 }
