@@ -7,6 +7,7 @@ use App\Tag;
 use App\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Carbon\Carbon;
 
 class PostController extends Controller
 {
@@ -50,7 +51,8 @@ class PostController extends Controller
         // $post->title = $title;
         // $post->subtitle = "Subtitle-2";
         // $post->author = "Author-2";
-        $post->publication_date = "2021-02-22 16:54:28";
+        $unformatted_publication_date = Carbon::today()->subDays(rand(0, 365));
+        $post->publication_date = $unformatted_publication_date;
 
 
         $post->fill($data);
